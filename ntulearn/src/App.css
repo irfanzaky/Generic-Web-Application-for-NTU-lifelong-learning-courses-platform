@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primaryColor: #af9a7d;
+  --mainWhite: #f0f0f0;
+  --shadowWhite: #ffffff;
+  --shadowDark: #ccc;
+  --ntuBlue: #100b9f;
+
+  --offWhite: #aaa;
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --darkGrey: #aaa;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 3px;
+  --outerShadow: 8px 8px 16px var(--shadowDark),
+    -10px -10px 16px var(--shadowWhite);
+  --innerShadow: inset 10px 0px 100px var(--mainWhite),
+    inset -10px 0px 100px var(--mainWhite);
+}
+/* globals */
+body {
+  padding-top: 66px;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  font-family: "Segoe UI", "Roboto", "Oxygen";
+  line-height: 1.4;
+}
+
+h2 {
+  color: rgb(11, 144, 197);
+}
+
+/* end of globals */
+/* navbar */
+
+.NavbarText {
+  color: var(--mainBlack);
+  text-decoration: none;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 4rem;
+  padding: 0rem 3.5rem;
+  background: var(--mainWhite);
+  text-align: center;
+  overflow: auto;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+}
+
+.Navbar > div {
+  width: 6em;
+  padding: 0.5rem 0.5rem;
+  vertical-align: middle;
+}
+
+.Navbar > div:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.push {
+  margin-left: auto;
+}
+
+.course-navbar {
+  justify-content: space-evenly;
+  height: 3rem;
+  padding: 0rem 0rem;
+  box-shadow: 8px 0px 16px var(--shadowDark);
+}
+.course-navbar > button {
+  justify-content: space-evenly;
+  height: 3rem;
+  flex-grow: 1;
+  border: none;
+  background-color: var(--mainWhite);
+  font-size: 1rem;
+  color: rgb(56, 56, 56);
+  /* min-width: 250px; */
+}
+.course-navbar > button:hover {
+  background-color: #ddd;
+  color: black;
+}
+.course-navbar > button:focus {
+  outline: 0;
+}
+
+/* .course-navbar::-webkit-scrollbar {
+  width: 0 !important;
+} */
+
+.logo-container {
+  text-align: left;
+  justify-content: flex-start;
+}
+.navbar-image {
+  width: 6rem;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Header footer */
+
+.header {
+  padding: 160px;
+  text-align: center;
+  background: var(--ntuBlue);
+  color: white;
+  margin: 0;
+  background-image: url("./images/sg-wallpaper.jpg");
+}
+
+.loginbg {
+  background-image: url("./images/HiveAtas.jpg");
+  padding: 500px;
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.footer {
+  padding: 100px;
+  text-align: center;
+  background: var(--ntuBlue);
+  color: white;
+  margin: 0;
+}
+/* course flex container */
+
+.flex-super-container {
+  display: flex;
+  margin: 0% 5%;
+  /* background-color: rgb(255, 184, 184); */
+  flex-direction: column;
+  padding: 50px;
+}
+.flex-container {
+  display: flex;
+  overflow: auto;
+  box-shadow: var(--innerShadow);
+}
+.flex-container::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+/* course card container */
+.course-card {
+  box-shadow: 8px 8px 16px var(--shadowDark),
+    -10px -10px 16px var(--shadowWhite);
+  min-width: 280px;
+  max-width: 300px;
+  border-radius: 25px;
+  margin: 20px;
+  padding: 0px;
+}
+
+.course-card p,
+h3 {
+  margin: 0.5rem;
+}
+
+.course-card h3 {
+  font-size: 1.3rem;
+}
+.course-img {
+  height: 12rem;
+  object-fit: cover;
+  width: 100%;
+}
+
+.text-box {
+  color: grey;
+  font-size: 16px;
+  margin: 0px;
+}
+
+.course-card-container {
+  padding: 0rem 0.5rem 1rem 1rem;
+}
