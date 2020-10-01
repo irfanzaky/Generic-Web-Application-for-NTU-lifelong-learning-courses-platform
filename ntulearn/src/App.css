@@ -8,7 +8,7 @@
   --mainWhite: #f0f0f0;
   --shadowWhite: #ffffff;
   --shadowDark: #ccc;
-  --ntuBlue: #100b9f;
+  --ntuBlue: #040085;
 
   --offWhite: #aaa;
   --mainBlack: #222;
@@ -16,10 +16,8 @@
   --darkGrey: #aaa;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
-  --outerShadow: 8px 8px 16px var(--shadowDark),
-    -10px -10px 16px var(--shadowWhite);
-  --innerShadow: inset 10px 0px 100px var(--mainWhite),
-    inset -10px 0px 100px var(--mainWhite);
+  --outerShadow: 8px 8px 16px var(--shadowDark), -10px -10px 16px var(--shadowWhite);
+  --innerShadow: inset 10px 0px 100px var(--mainWhite), inset -10px 0px 100px var(--mainWhite);
 }
 /* globals */
 body {
@@ -32,6 +30,14 @@ body {
 
 h2 {
   color: rgb(11, 144, 197);
+  margin-bottom: 10px;
+}
+li {
+  margin: 20px;
+}
+
+p {
+  margin: 10px;
 }
 
 /* end of globals */
@@ -129,20 +135,49 @@ h2 {
 
 .loginbg {
   background-image: url("./images/HiveAtas.jpg");
-  padding: 500px;
+  min-height: 91vh;
   height: 100%;
-
-  /* Center and scale the image nicely */
+  /* Center and scale the image */
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  align-items: center;
+}
+.login-card {
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+}
+.field {
+  border: 0px solid;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: 0.3s all;
+  box-shadow: 4px 4px 10px var(--shadowDark), -5px -5px 16px var(--shadowWhite);
+}
+.field:hover {
+  background-color: rgba(255, 255, 255);
+  box-shadow: 8px 8px 16px var(--shadowDark), -5px -5px 16px var(--shadowWhite);
+}
+.field-button {
+  background-color: #aaa;
 }
 .footer {
-  padding: 100px;
+  padding: 50px;
   text-align: center;
   background: var(--ntuBlue);
   color: white;
   margin: 0;
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
 }
 /* course flex container */
 
@@ -164,8 +199,7 @@ h2 {
 
 /* course card container */
 .course-card {
-  box-shadow: 8px 8px 16px var(--shadowDark),
-    -10px -10px 16px var(--shadowWhite);
+  box-shadow: 8px 8px 16px var(--shadowDark), -10px -10px 16px var(--shadowWhite);
   min-width: 280px;
   max-width: 300px;
   border-radius: 25px;
@@ -195,4 +229,9 @@ h3 {
 
 .course-card-container {
   padding: 0rem 0.5rem 1rem 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--mainBlack);
 }

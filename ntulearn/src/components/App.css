@@ -1,0 +1,44 @@
+.lecture-container {
+  background-color: var(--mainWhite);
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+.menu-wrapper {
+  padding: 10px;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+ul,
+li {
+  color: var(--mainBlack);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .lecture-container {
+    grid-template-columns: 1fr;
+    background-color: red;
+  }
+}
+@media (max-width: 480px) {
+  .lecture-container {
+    grid-template-columns: 1fr;
+    background-color: blue;
+  }
+  .lecture-container {
+    grid-template-columns: 1fr 1fr;
+    background-color: red;
+  }
+}
