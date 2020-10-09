@@ -1,11 +1,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { courseListReducer, courseDetailsReducer } from "./reducers/courseReducer";
+import { userRegisterReducer, userSigninReducer } from "./reducers/userReducers";
 import thunk from "redux-thunk";
+import Cookie from "js-cookie";
 
-const initialState = {};
+const userInfo = Cookie.getJSON("userInfo") || null;
+
+const initialState = { userSignin: { userInfo } };
 const reducer = combineReducers({
   courseList: courseListReducer,
   courseDetails: courseDetailsReducer,
+  userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
 });
 
 const composeEnhancers =

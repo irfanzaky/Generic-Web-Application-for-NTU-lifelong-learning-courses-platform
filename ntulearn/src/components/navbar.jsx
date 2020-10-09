@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import ntulogo from "../images/ntu-logo.png";
-const Navbar = () => {
+const Navbar = ({ userInfo }) => {
+  console.log("user info", userInfo);
   return (
     <div className="Navbar fixed">
       <div className="logo-container">
@@ -24,9 +25,15 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/myprofile" className="NavbarText">
-          My Profile
-        </Link>
+        {userInfo ? (
+          <Link to="/myprofile" className="NavbarText">
+            {userInfo.username}
+          </Link>
+        ) : (
+          <Link to="/" className="NavbarText">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
