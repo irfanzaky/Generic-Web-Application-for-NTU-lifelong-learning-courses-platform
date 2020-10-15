@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CourseNavbar = ({ params }) => {
   return (
     <div className="Navbar course-navbar">
-      <Link to={`/course/${params.courseID}/desc`} className="NavbarText">
+      <Link to={`/course/${params.courseID}/`} className="NavbarText">
         Course Description
       </Link>
       <Link to={`/course/${params.courseID}/announcement`} className="NavbarText">

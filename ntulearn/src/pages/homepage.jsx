@@ -7,7 +7,6 @@ const Homepage = () => {
   const courseList = useSelector((state) => state.courseList);
   const { courses, loading, error } = courseList;
 
-  // console.log("hello: ", courses, loading, error);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listCourses());
@@ -16,13 +15,13 @@ const Homepage = () => {
 
   return loading ? (
     <div>loading...</div>
-  ) : error ? (
+  ) : error ?  (
     <div>{error}</div>
   ) : (
     <div>
       <div className="header">
-        <h1>Hello from Homepage</h1>
-        <p>This should be an image</p>
+        <h1>Wellcome to NTU Lifelong Learning Centre</h1>
+        <p>Lorem Ipsum Dolor sit Amet</p>
       </div>
       <div className="flex-super-container">
         <h3>My Course</h3>

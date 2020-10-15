@@ -14,11 +14,7 @@ const Navbar = ({ userInfo }) => {
           Home
         </Link>
       </div>
-      <div>
-        <Link to="/course" className="NavbarText">
-          Course
-        </Link>
-      </div>
+
       <div>
         <Link to="/video" className="NavbarText">
           Certification

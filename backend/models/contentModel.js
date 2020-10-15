@@ -6,7 +6,7 @@ const qnaSchema = new mongoose.Schema({
   answer: [{ username: String, answer: String }],
 });
 
-const LectureSchema = new mongoose.Schema({
+const lectureSchema = new mongoose.Schema({
   title: { type: String, required: true },
   video: { type: String, required: true },
   duration: [number],
@@ -14,13 +14,15 @@ const LectureSchema = new mongoose.Schema({
 
 const contentSchema = new mongoose.Schema({
   courseID: { type: String, required: true },
-  chapterNo: Number,
+  chapterNo: { type: Number, required: true },
   chapterTitle: { type: String, required: true },
   chapterSummary: { type: String, required: true },
   chapterDocument: [String],
   chapterQnA: [qnaSchema],
   courseCategory: [String],
-  Lecture: [LectureSchema],
+  Lecture: [lectureSchema],
 });
 
 const contentModel = mongoose.model("Content", contentSchema);
+
+export default contentModel;

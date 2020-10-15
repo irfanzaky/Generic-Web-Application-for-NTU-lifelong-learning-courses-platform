@@ -21,7 +21,7 @@ const listCourses = () => async (dispatch) => {
 const detailsCourse = (courseID) => async (dispatch) => {
   try {
     dispatch({ type: COURSE_DETAILS_REQUEST, payload: courseID });
-    const { data } = await Axios.get("/api/courses/" + courseID);
+    const { data } = await Axios.get("/api/courses/get/" + courseID);
     dispatch({ type: COURSE_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: COURSE_DETAILS_FAIL, payload: error.message });
