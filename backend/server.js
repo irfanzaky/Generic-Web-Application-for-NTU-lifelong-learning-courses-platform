@@ -1,5 +1,4 @@
 import express from "express";
-import data from "./data";
 import config from "./config";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -24,12 +23,6 @@ mongoose
 app.use(bodyParser.json());
 app.use("/api/users", userRoute);
 app.use("/api/courses", courseRoute);
-app.get("/api/test/:id", (req, res) => {
-  const courseID = req.params.id;
-  const course = data.courses.find((x) => x._id === courseID);
-  if (course) res.send(course);
-  else res.status(404).send({ msg: "Product Not Found" });
-});
 
 app.get("/api/test", (req, res) => {
   res.send(data.courses);

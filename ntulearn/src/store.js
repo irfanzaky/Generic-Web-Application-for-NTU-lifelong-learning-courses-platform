@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { courseListReducer, courseDetailsReducer } from "./reducers/courseReducer";
+import { contentDetailsReducer } from "./reducers/contentReducer";
 import { userRegisterReducer, userSigninReducer } from "./reducers/userReducers";
 import thunk from "redux-thunk";
 import Cookie from "js-cookie";
@@ -10,6 +11,7 @@ const initialState = { userSignin: { userInfo } };
 const reducer = combineReducers({
   courseList: courseListReducer,
   courseDetails: courseDetailsReducer,
+  contentDetails: contentDetailsReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
 });

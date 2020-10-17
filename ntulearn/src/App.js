@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import Loginpage from "./pages/loginpage";
 import Homepage from "./pages/homepage";
 import Coursepage from "./pages/coursepage";
-import Videopage from "./components/course-lecture";
+import Videopage from "./pages/videopage";
 import Errorpage from "./pages/errorpage";
 import Registerpage from "./pages/registerpage";
 import { Switch, Route } from "react-router-dom";
@@ -22,9 +22,8 @@ function App() {
         <Route path="/home" component={Homepage} />
         <Route path="/" exact component={Loginpage} />
         <Route path="/register" component={Registerpage} />
-        <Route path="/course/:courseID" component={Coursepage} />
-        <Route path="/course/:courseID/:menu" component={Coursepage} />
-        <Route path="/video" component={Videopage} />
+        <Route path="/course/:courseID/" component={Coursepage} />
+        <Route path="/lecture/:courseID/:chapter" component={Videopage} />
         <Route component={Errorpage} />
       </Switch>
       <Footer />

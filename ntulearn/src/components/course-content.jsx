@@ -1,33 +1,39 @@
-import React, { useState} from 'react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useState, useEffect} from 'react';
 import parse from 'html-react-parser';
+import { useDispatch, useSelector } from "react-redux";
+import { detailsContent } from "../actions/contentActions";import { Link } from "react-router-dom";
 
-const CourseContent = () => {
-  const [courseDesc, setCourseDesc] = useState("");
-  const [editable, setEditable] = useState(true)
-  const handleButton = () => setEditable(!editable)
-  return (
+const Chapter = ({content}) => {
+  return <div>
+     <Link className="link" to={"/lecture/" + content.courseID + "/" + content.chapterNo}>
+    <h2>Chapter {content.chapterNo}</h2></Link>
+    <h3>{content.chapterTitle}</h3>
+    <p>{content.chapterSummary}</p>
+    <br/>
+  </div>;
+}
+
+const LectureContent = (props) => {
+  const contentDetails = useSelector((state) => state.contentDetails);
+  const { content, loading, error } = contentDetails;
+  const params = props.match.params;
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(detailsContent(params.courseID));
+    return () => {};
+  }, []); 
+
+  return (loading ? (
+    <div>loading...</div>
+  ) : !content ?  (
+    <div>{error}</div>
+  ) : (
     <div className="flex-super-container">
-      <h2>Content</h2>
-      {
-        editable?<CKEditor
-          editor={ ClassicEditor }
-          data={ courseDesc }
-          onInit={ editor => {
-              // You can store the "editor" and use when it is needed.
-              console.log( 'Editor is ready to use!', editor );
-          } }
-          onChange={ ( event, editor ) => {
-              const data = editor.getData();
-              setCourseDesc(data);
-              console.log( { data} );
-          } }
-      />:  parse(courseDesc)
-      }
-       <button className="button" onClick={handleButton}>{editable?'true':'false'}</button>
-    </div>
-  );
+      {content.map((chapter, index) => 
+            <Chapter content={chapter} key={index} />
+          )}
+    </div>))
 };
 
-export default CourseContent;
+export default LectureContent;

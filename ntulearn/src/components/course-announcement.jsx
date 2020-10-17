@@ -4,7 +4,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
 import { useSelector } from "react-redux";
 
-const Annoucement = ({announcement, handleEdit, handleOnChange, index}) => {
+const Annoucement = ({announcement, handleEdit, handleOnChange}) => {
   return (<div>
     {announcement.editable?
       <CKEditor  
@@ -21,7 +21,6 @@ const Annoucement = ({announcement, handleEdit, handleOnChange, index}) => {
     <button className="button" onClick={handleEdit}>{announcement.editable?'save':'edit'}</button>
   </div>)
 }
-
 
 const CourseAnnouncement = () => {
   const courseDetails = useSelector((state) => state.courseDetails);
