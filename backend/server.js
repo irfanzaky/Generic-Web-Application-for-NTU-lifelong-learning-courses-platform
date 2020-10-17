@@ -6,11 +6,11 @@ import userRoute from "./routes/userRoute";
 import courseRoute from "./routes/courseRoute";
 import bodyParser from "body-parser";
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 dotenv.config();
-const mongodbUrl = config.MONGODB_URL;
+const mongodbUrl = process.env.MONGODB_URI || config.MONGODB_URL;
 console.log(mongodbUrl);
 mongoose
   .connect(mongodbUrl, {
