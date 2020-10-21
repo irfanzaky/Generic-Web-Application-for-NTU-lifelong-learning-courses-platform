@@ -9,7 +9,7 @@ const qnaSchema = new mongoose.Schema({
 const lectureSchema = new mongoose.Schema({
   title: { type: String, required: true },
   video: { type: String, required: true },
-  duration: [Number],
+  duration: Number,
 });
 
 const contentSchema = new mongoose.Schema({

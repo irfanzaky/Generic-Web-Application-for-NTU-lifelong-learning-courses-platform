@@ -23,7 +23,9 @@ function App() {
         <Route path="/" exact component={Loginpage} />
         <Route path="/register" component={Registerpage} />
         <Route path="/course/:courseID/" component={Coursepage} />
-        <Route path="/lecture/:courseID/:chapter" component={Videopage} />
+        <Route path="/lecture/:courseID/:chapter" exact component={Videopage} />
+        <Route path="/lecture/:courseID/:chapter/:menu" exact component={Videopage} />
+        <Route path="/lecture/:courseID/:chapter/:menu/:index" component={Videopage}/>
         <Route component={Errorpage} />
       </Switch>
       <Footer />

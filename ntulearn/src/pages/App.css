@@ -17,14 +17,14 @@
   left: 0;
 }
 
-ul,
+/* ul,
 li {
   color: var(--mainBlack);
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 @media (max-width: 720px) {
   .lecture-container {
