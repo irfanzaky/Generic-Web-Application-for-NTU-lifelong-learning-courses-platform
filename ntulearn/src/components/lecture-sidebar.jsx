@@ -4,7 +4,7 @@ import LectureContent from "../components/lecture-content";
 import LectureQnA from "../components/lecture-qna";
 import LectureSummary from "../components/lecture-summary";
 
-const LectureSidebar = ({menu, activeChapter, baselink})=>{
+const LectureSidebar = ({menu, lectureContent, baselink})=>{
   switch(menu) {
     case "qna":
       return <div className="menu-wrapper"> 
@@ -13,7 +13,7 @@ const LectureSidebar = ({menu, activeChapter, baselink})=>{
       return <div className="menu-wrapper">  3
     </div>
     default:
-      return <LectureContent activeChapter={activeChapter} baselink={baselink} ></LectureContent>
+      return <LectureContent lectureContent={lectureContent} ></LectureContent>
   }
 }
 

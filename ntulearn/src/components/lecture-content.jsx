@@ -1,22 +1,28 @@
 import React from "react";
-import { Switch, Route, Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
+import queryString from 'query-string';
+const Lecture = ({content, index, location}) => {
+  const {lecture, ...others} =  queryString.parse(location.search);
+  const queryParam = queryString.stringify(others);
 
-const Lecture = ({lecture,baselink, index}) => {
   return <div>
-     <Link className="link" to={baselink+"/content/"+ index}>
+     <Link className="link" to={{
+    pathname:  location.baselink,
+    search: queryParam + '&lecture=' + index
+  }}>
      <div>
-          {lecture.title}<br/>
-          {Math.floor(lecture.duration/60)}m {(lecture.duration%60)}s
+          {content.title}<br/>
+          {Math.floor(content.duration/60)}m {(content.duration%60)}s <bt/>
         </div></Link>
     <br/>
   </div>;
 }
 
-const Contents = ({ activeChapter, baselink }) => {
+const Contents = ({ lectureContent, location }) => {
   return (<div className="menu-wrapper">  
-  <h4>{ activeChapter.chapterTitle}</h4><br/>
-  {activeChapter.lecture.map((lecture, index) => 
-  <Lecture lecture={lecture} baselink={baselink} index={index}></Lecture>
+  <h4>{ lectureContent.chapterTitle}</h4 ><br/>
+  {lectureContent.lecture.map((content, index) => 
+    <Lecture content={content} index={index} location={location}></Lecture>
   )}
 </div>)
 };

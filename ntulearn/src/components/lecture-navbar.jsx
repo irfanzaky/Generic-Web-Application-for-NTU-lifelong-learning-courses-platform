@@ -1,18 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import queryString from 'query-string';
 
-const LectureNavbar = ({baselink}) => {
+const LectureNavbar = ({location}) => {
+  const {menu, ...others} =  queryString.parse(location.search);
+  const queryParam = queryString.stringify(others)
+  
   return (
     <div className="Navbar course-navbar">
-      <Link to={baselink + "/content"} className="NavbarText">
-        Content
-      </Link>
-      <Link to={baselink + "/qna" } className="NavbarText">
-        Q&A
-      </Link>
-      <Link to={baselink + "/summary" } className="NavbarText">
-        Summary
-      </Link>
+      <Link to={{
+        pathname:  location.baselink,
+        search: queryParam + '&menu=content'
+      }} className="NavbarText">Content</Link>
+      <Link to={{
+        pathname:  location.baselink,
+        search:queryParam+ '&menu=qna'
+      }} className="NavbarText">Q & A</Link>
+      <Link to={{
+        pathname:  location.baselink,
+        search: queryParam + '&menu=summary'
+      }} className="NavbarText">Summary</Link>
     </div>
   );
 };

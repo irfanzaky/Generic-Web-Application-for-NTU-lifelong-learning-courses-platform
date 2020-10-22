@@ -1,11 +1,7 @@
 import React from "react";
 
-const Contents = ({ lecture }) => {
-  return (
-    <div className="Navbar course-navbar">
-      
-    </div>
-  );
-};
+const Contents = ({ lecture }) => <div>
+  lecture Q&A
+</div>;
 
 export default Contents;
