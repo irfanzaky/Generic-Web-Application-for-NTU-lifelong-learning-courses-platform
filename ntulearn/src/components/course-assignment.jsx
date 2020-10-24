@@ -1,31 +1,46 @@
 import React, { useState} from 'react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import parse from 'html-react-parser';
+import Dropzone from 'react-dropzone-uploader'
+import 'react-dropzone-uploader/dist/styles.css'
+
 
 const CourseContent = () => {
-  const [courseDesc, setCourseDesc] = useState("");
-  const [editable, setEditable] = useState(true)
-  const handleButton = () => setEditable(!editable)
+  const url = "https://storage.googleapis.com/kumbigo.appspot.com/HomeWork5%20Irfan%20Zaky%20Harlen.pdf"
+  const assignmentURL = "https://storage.googleapis.com/kumbigo.appspot.com/Homework5(1).pdf" 
+  // specify upload params and url for your files
+  const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
+
+  // called every time a file's `status` changes
+  const handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
+  
+  // receives array of files that are done uploading when submit button is clicked
+  const handleSubmit = (files, allFiles) => {
+    console.log(files.map(f => f.meta))
+    allFiles.forEach(f => f.remove())
+  }
   return (
     <div className="flex-super-container">
       <h2>Assignment</h2>
-      {
-        editable?<CKEditor
-          editor={ ClassicEditor }
-          data={ courseDesc }
-          onInit={ editor => {
-              // You can store the "editor" and use when it is needed.
-              console.log( 'Editor is ready to use!', editor );
-          } }
-          onChange={ ( event, editor ) => {
-              const data = editor.getData();
-              setCourseDesc(data);
-              console.log( { data} );
-          } }
-      />:  parse(courseDesc)
-      }
-       <button className="button" onClick={handleButton}>{editable?'true':'false'}</button>
+      <embed
+    src={assignmentURL}
+    type="application/pdf"
+    height={300}
+    width={'100%'}
+  />
+
+      <h3>Upload your assignment here:</h3>
+    <Dropzone
+      getUploadParams={getUploadParams}
+      onChangeStatus={handleChangeStatus}
+      onSubmit={handleSubmit}
+      accept="image/*,audio/*,video/*"
+    />
+    <h3>Current uploaded assignment:</h3>
+    <embed
+    src={url}
+    type="application/pdf"
+    height={800}
+    width={'100%'}
+  />
     </div>
   );
 };

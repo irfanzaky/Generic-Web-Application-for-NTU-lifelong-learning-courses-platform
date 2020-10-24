@@ -76,6 +76,11 @@ p {
   position: fixed;
   top: 0;
 }
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 
 .Navbar > div {
   width: 6em;
@@ -242,4 +247,19 @@ h3 {
 .link {
   text-decoration: none;
   color: var(--mainBlack);
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: var(--ntuBlue);
+  color: var(--mainWhite);
+  width: 150px;
+  font-size: 18px;
+  float: right;
+  margin: 20px;
+}
+
+.button:hover {
+  background-color: #020049;
+  color: var(--mainWhite);
 }
