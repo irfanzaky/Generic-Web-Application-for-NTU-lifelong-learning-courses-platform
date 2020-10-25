@@ -32,7 +32,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+    "build": "cd ntulearn && npm run build",
+    "install-client": "cd ntulearn && npm install",
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "repository": {
     "type": "git",
