@@ -34,7 +34,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd ntulearn && npm run build",
     "install-client": "cd ntulearn && yarn install",
-    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "start": "babel-node backend/server.js",
+    "start-nodemon": "nodemon --watch backend --exec babel-node backend/server.js",
     "heroku-postbuild": "yarn install-client && yarn build"
   },
   "repository": {

@@ -3,7 +3,8 @@ import CourseCard from "../components/course-card";
 import { useDispatch, useSelector } from "react-redux";
 import { listCourses } from "../actions/coursesActions";
 
-const Homepage = () => {
+const Coursespage
+ = () => {
   const courseList = useSelector((state) => state.courseList);
   const { courses, loading, error } = courseList;
 
@@ -42,4 +43,5 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Coursespage
+;
