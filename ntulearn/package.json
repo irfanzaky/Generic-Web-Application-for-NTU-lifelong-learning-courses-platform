@@ -1,8 +1,9 @@
 {
   "name": "ntulearn",
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost/:5000",
   "version": "0.1.0",
   "private": true,
+  "homepage":".",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^23.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",
@@ -23,6 +24,7 @@
     "react-scripts": "^3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "serve": "^11.3.2",
     "superagent": "^6.1.0"
   },
   "scripts": {

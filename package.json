@@ -36,7 +36,7 @@
     "install-client": "cd ntulearn && yarn install",
     "start": "babel-node backend/server.js",
     "start-nodemon": "nodemon --watch backend --exec babel-node backend/server.js",
-    "heroku-postbuild": "yarn install-client && yarn build"
+    "heroku-postbuild": "yarn install-client && yarn build && yarn start"
   },
   "repository": {
     "type": "git",
