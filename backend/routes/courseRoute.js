@@ -29,7 +29,7 @@ router.get("/content/:id", async (req, res) => {
 });
 
 router.get("/content/:id/:chapter", async (req, res) => {
-  const course = await Content.findOne({ 
+  const course = await Content.find({ 
     courseID: req.params.id, 
     chapterNo: req.params.chapter});
   if (course) {

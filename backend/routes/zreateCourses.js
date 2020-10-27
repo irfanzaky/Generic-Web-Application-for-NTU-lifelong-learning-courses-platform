@@ -28,4 +28,4 @@ router.get("/createCourses", async (req, res) => {
 
     res.send(newCourse1);
   } catch (error) {
-    res.send({ message: error.message })}
+    res.send({ message: error.message })}})

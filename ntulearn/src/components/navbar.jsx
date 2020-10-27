@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import ntulogo from "../images/ntu-logo.png";
 const Navbar = ({ userInfo }) => {
   console.log("user info", userInfo);
   return (
     <div className="Navbar fixed">
       <div className="logo-container">
-        <img src={ntulogo} className="navbar-image" alt="NTU logo" />
+        <Link to="/home">
+        <img src={ntulogo} className="navbar-image" alt="NTU logo" /></Link>
       </div>
       <div className="push">
         <Link to="/home" className="NavbarText">
@@ -16,8 +16,8 @@ const Navbar = ({ userInfo }) => {
       </div>
 
       <div>
-        <Link to="/video" className="NavbarText">
-          Certification
+        <Link to="/courses" className="NavbarText">
+          Courses
         </Link>
       </div>
       <div>

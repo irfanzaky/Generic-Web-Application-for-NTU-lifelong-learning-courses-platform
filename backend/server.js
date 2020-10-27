@@ -1,17 +1,21 @@
 import express from "express";
-import config from "./config";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import config from "./config";
 import userRoute from "./routes/userRoute";
 import courseRoute from "./routes/courseRoute";
 import bodyParser from "body-parser";
 
-const port = process.env.PORT || 5000;
+import AdminBro from "admin-bro";
+import options from "./src/admin.options";
+import buildAdminRouter from "./src/admin.router";
+
+const port = 5000;
 const app = express();
 
 dotenv.config();
-const mongodbUrl = process.env.MONGODB_URI || config.MONGODB_URL;
-console.log(mongodbUrl);
+const mongodbUrl = config.MONGODB_URL;
+console.log('this is mongodbURL', mongodbUrl);
 mongoose
   .connect(mongodbUrl, {
     useNewUrlParser: true,
@@ -20,13 +24,24 @@ mongoose
   })
   .catch((error) => console.log("There is an error:", error));
 
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  if (req.method === 'OPTIONS'){
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+} )
 app.use("/api/users", userRoute);
 app.use("/api/courses", courseRoute);
 
-app.get("/api/test", (req, res) => {
-  res.send(data.courses);
-});
+const admin = new AdminBro(options);
+const router = buildAdminRouter(admin);
+app.use(admin.options.rootPath, router)
 
 app.listen(port, () => {
   console.log(`Server started listening at http://localhost:${port}`);

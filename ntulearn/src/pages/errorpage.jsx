@@ -1,8 +1,9 @@
 import React from "react";
+import ntulogo from "../images/error.jpg";
 const Errorpage = () => {
   return (
     <div>
-      <h1>hello from Errorpage</h1>
+      <img className="center" src={ntulogo} alt='error' />
     </div>
   );
 };

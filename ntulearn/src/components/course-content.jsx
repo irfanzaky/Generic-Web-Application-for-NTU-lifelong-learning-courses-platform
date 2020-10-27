@@ -1,7 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import parse from 'html-react-parser';
 import { useDispatch, useSelector } from "react-redux";
-import { detailsContent } from "../actions/contentActions";import { Link } from "react-router-dom";
+import { detailsContent } from "../actions/contentActions";
+import { Link } from "react-router-dom";
 
 const Chapter = ({content}) => {
   return <div>
@@ -31,8 +32,7 @@ const LectureContent = (props) => {
   ) : (
     <div className="flex-super-container">
       {content.map((chapter, index) => 
-            <Chapter content={chapter} key={index} />
-          )}
+        <Chapter content={chapter} key={index} />)}
     </div>))
 };
 

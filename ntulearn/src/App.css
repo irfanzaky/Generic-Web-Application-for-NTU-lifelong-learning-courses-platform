@@ -28,10 +28,18 @@ body {
   line-height: 1.4;
 }
 
+h3,
+h4,
+h5 {
+  font-family: "Segoe UI", "Roboto", "Oxygen";
+}
+
 h2 {
   color: rgb(11, 144, 197);
   margin-bottom: 10px;
+  font-family: "Segoe UI", "Roboto", "Oxygen";
 }
+
 li {
   margin: 20px;
 }
@@ -67,6 +75,11 @@ p {
 .fixed {
   position: fixed;
   top: 0;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .Navbar > div {
@@ -234,4 +247,19 @@ h3 {
 .link {
   text-decoration: none;
   color: var(--mainBlack);
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: var(--ntuBlue);
+  color: var(--mainWhite);
+  width: 150px;
+  font-size: 18px;
+  float: right;
+  margin: 20px;
+}
+
+.button:hover {
+  background-color: #020049;
+  color: var(--mainWhite);
 }

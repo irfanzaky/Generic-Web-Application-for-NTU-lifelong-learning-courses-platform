@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, required: true, default: "student" },
   courses: { type: String },
+  encryptedPassword: {type:String}
 });
 
 const userModel = mongoose.model("User", userSchema);
