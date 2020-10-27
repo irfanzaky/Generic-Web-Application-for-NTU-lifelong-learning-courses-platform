@@ -1,9 +1,8 @@
 {
   "name": "ntulearn",
-  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
-  "homepage":".",
+  "homepage": ".",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^23.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",
@@ -12,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "html-react-parser": "^0.14.0",
+    "http-proxy-middleware": "^1.0.6",
     "js-cookie": "^2.2.1",
     "query-string": "^6.13.6",
     "react": "^16.12.0",

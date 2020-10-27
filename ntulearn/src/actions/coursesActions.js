@@ -11,7 +11,7 @@ import {
 const listCourses = () => async (dispatch) => {
   try {
     dispatch({ type: COURSE_LIST_REQUEST });
-    const { data } = await Axios.get("/api/courses");
+    const { data } = await Axios.get("http://18.139.83.167:5000/api/courses");
     dispatch({ type: COURSE_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: COURSE_LIST_FAIL, payload: error.message });
@@ -21,7 +21,7 @@ const listCourses = () => async (dispatch) => {
 const detailsCourse = (courseID) => async (dispatch) => {
   try {
     dispatch({ type: COURSE_DETAILS_REQUEST, payload: courseID });
-    const { data } = await Axios.get("/api/courses/get/" + courseID);
+    const { data } = await Axios.get("http://18.139.83.167:5000/api/courses/get/" + courseID);
     dispatch({ type: COURSE_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: COURSE_DETAILS_FAIL, payload: error.message });
