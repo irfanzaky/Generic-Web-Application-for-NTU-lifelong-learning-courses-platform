@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import config from "./config";
 import userRoute from "./routes/userRoute";
 import courseRoute from "./routes/courseRoute";
+import uploadRoute from "./routes/uploadRoute";
 import bodyParser from "body-parser";
 
 import AdminBro from "admin-bro";
@@ -26,7 +27,6 @@ mongoose
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
@@ -36,13 +36,17 @@ app.use((req, res, next) => {
   }
   next();
 } )
+
+app.use("/api/uploads", uploadRoute);
 app.use("/api/users", userRoute);
 app.use("/api/courses", courseRoute);
+console.log(__dirname)
 
 const admin = new AdminBro(options);
 const router = buildAdminRouter(admin);
 app.use(admin.options.rootPath, router)
 
 app.listen(port, () => {
+  console.log(config)
   console.log(`Server started listening at http://localhost:${port}`);
 });
