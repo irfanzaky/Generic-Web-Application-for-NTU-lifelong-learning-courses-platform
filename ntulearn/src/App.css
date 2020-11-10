@@ -80,6 +80,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   display: block;
+  max-width: 10%;
 }
 
 .Navbar > div {
@@ -262,4 +263,8 @@ h3 {
 .button:hover {
   background-color: #020049;
   color: var(--mainWhite);
+}
+
+.center-all {
+  text-align: center;
 }

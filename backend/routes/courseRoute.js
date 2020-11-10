@@ -2,6 +2,7 @@ import express from "express";
 import Course from "../models/courseModel";
 import Content from "../models/contentModel";
 import { getToken, isAuth } from "../util";
+import ExpressFormidable from "express-formidable";
 
 const router = express.Router();
 
@@ -16,6 +17,50 @@ router.get("/get/:id", async (req, res) => {
     res.send(course);
   } else {
     res.status(404).send({ message: "Course Not Found." });
+  }
+});
+
+router.put("/desc/:id", async (req, res) => {
+  console.log(req.body.desc)
+  const course = await Course.findOneAndUpdate(
+    { courseID: req.params.id }, //filter
+    { courseDescription: req.body.desc}, //update
+    { new: true});
+  if (course) {
+    console.log('succesfully update')
+    res.status(200).send('Succesfully saved.');
+  } else {
+    res.status(500).send('error in updating course description');
+  }
+});
+
+router.put("/ann/:id", async (req, res) => {
+  console.log(req.body.ann)
+  const course = await Course.findOneAndUpdate(
+    { courseID: req.params.id }, //filter
+    { announcement: req.body.ann}, //update
+    { new: true});
+  if (course) {
+    console.log('succesfully update')
+    res.status(200).send('Succesfully saved.');
+  } else {
+    res.status(500).send('error in updating course announcement');
+  }
+});
+
+router.post("/assignment/:id", async (req, res) => {
+  const {email, url, username} = req.body;
+  console.log('assignement received',email, url);
+  const course = await Course.findOne({ courseID: req.params.id });
+  if (course) {
+    const newAssignment = {email, url, username };
+    course.assignment.push(newAssignment);
+    const updatedAssignemnt = await course.save();
+    if (updatedAssignemnt) {res.status(200).send({
+      data:updatedAssignemnt,
+      msg:'Succesfully saved.'})}
+    else {res.status(500).send('error in updating course announcement')};
+  } else {res.status(500).send('error in finding course announcement');
   }
 });
 

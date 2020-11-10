@@ -17,6 +17,7 @@ const app = express();
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
 console.log('this is mongodbURL', mongodbUrl);
+mongoose.set('useFindAndModify', false);
 mongoose
   .connect(mongodbUrl, {
     useNewUrlParser: true,
@@ -25,7 +26,7 @@ mongoose
   })
   .catch((error) => console.log("There is an error:", error));
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

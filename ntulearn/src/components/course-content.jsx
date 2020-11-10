@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import { useDispatch, useSelector } from "react-redux";
 import { detailsContent } from "../actions/contentActions";
 import { Link } from "react-router-dom";
+import lock from "../images/lock.png";
 
 const Chapter = ({content}) => {
   return <div>
@@ -15,25 +16,39 @@ const Chapter = ({content}) => {
 }
 
 const LectureContent = (props) => {
+  const userSignin = useSelector((state) => state.userSignin);
   const contentDetails = useSelector((state) => state.contentDetails);
   const { content, loading, error } = contentDetails;
-  const params = props.match.params;
-  
+  const { userInfo } = userSignin;
+  const [isenrolled, setEnrolled] = useState(false);
+  const [islecturer, setLecturer] = useState(false);
   const dispatch = useDispatch();
+  const params = props.match.params;
+
   useEffect(() => {
     dispatch(detailsContent(params.courseID));
+    setEnrolled(userInfo.courses.includes(params.courseID));
+    setLecturer(((userInfo.role || 'student') === "lecturer"));
     return () => {};
   }, []); 
 
-  return (loading ? (
-    <div>loading...</div>
-  ) : !content ?  (
-    <div>{error}</div>
-  ) : (
-    <div className="flex-super-container">
-      {content.map((chapter, index) => 
-        <Chapter content={chapter} key={index} />)}
-    </div>))
+
+  if(isenrolled)
+    return (loading ? (
+      <div>loading...</div>
+    ) : !content ?  (
+      <div>{error}</div>
+    ) : (
+      <div className="flex-super-container">
+        {content.map((chapter, index) => 
+          <Chapter content={chapter} key={index} />)}
+      </div>))
+  else
+    return (<div className="flex-super-container center-all">
+    <img className="center" src={lock} alt='lock' />
+    <h3>You don't have permission to view this page</h3>
+    <p> Please Enrolled to this course to have access to this page</p>
+    </div>)
 };
 
 export default LectureContent;

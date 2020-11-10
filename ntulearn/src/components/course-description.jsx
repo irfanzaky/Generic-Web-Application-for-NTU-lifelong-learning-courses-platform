@@ -1,22 +1,34 @@
 import React, { useState, useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
-import { useSelector } from "react-redux";
+import { updateCourseDesc } from "../actions/coursesActions";
 
 const CourseDescription = () => {
   const courseDetails = useSelector((state) => state.courseDetails);
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const { course, loading } = courseDetails;
   const [editable, setEditable] = useState(false);
   const [courseDesc, setCourseDesc] = useState('');
+  const [isenrolled, setEnrolled] = useState(false);
+  const [islecturer, setLecturer] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCourseDesc(course.courseDescription)
+    setEnrolled(userInfo.courses.includes(course.courseID))
+    setLecturer(((userInfo.role || 'student') === "lecturer"))
     return () => {};
   }, [loading]); 
 
-
-  const handleButton = () => setEditable(!editable);
+  const handleButton = () => {
+    setEditable(!editable)
+    if(editable){
+      dispatch(updateCourseDesc(course.courseID,courseDesc));
+    }
+  };
   const handleOnChange =  ( event, editor ) => {
     const data = editor.getData();
     setCourseDesc(data);
@@ -31,7 +43,8 @@ const CourseDescription = () => {
           onChange={handleOnChange} />:
       parse(courseDesc)
       }
-       <button className="button" onClick={handleButton}>{editable?'save':'edit'}</button>
+      {islecturer? 
+        <button className="button" onClick={handleButton}>{editable?'save':'edit'}</button>:""}
     </div>
   );
 };

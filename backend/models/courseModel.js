@@ -22,7 +22,13 @@ const courseSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  assignment: [String],
+  assignmentQ: String,
+  assignment: [{
+    url:String, 
+    email:String, 
+    username: String, 
+    date: { type: Date, default: Date.now }}],
+  
 });
 
 const courseModel = mongoose.model("Course", courseSchema);
