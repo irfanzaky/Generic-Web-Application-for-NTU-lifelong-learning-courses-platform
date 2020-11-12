@@ -5,9 +5,10 @@ import parse from 'html-react-parser';
 import { useDispatch, useSelector } from "react-redux";
 import { updateCourseAnn } from "../actions/coursesActions";
 import lock from "../images/lock.png";
+import img from '../images/announcement.png';
 
 const Annoucement = ({announcement, handleEdit, handleOnChange,isLecturer}) => {
-  return (<div>
+  return (<div className='grad1'>
     {announcement.editable?
       <CKEditor  
       editor={ ClassicEditor }
@@ -36,12 +37,9 @@ const CourseAnnouncement = () => {
   useEffect(() => {
     setCourseAnnouncement(course.announcement);
     setEnrolled(userInfo.courses.includes(course.courseID));
-    setLecturer(((userInfo.role || 'student') === "lecturer"));
+    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
     return () => {};
   }, [loading]); 
-
-  const isEnrolled = () => userInfo.courses.includes(course.courseID);
-  const isLecturer = () => (userInfo.role === "lecturer");
 
   const updateList = (list,index,update) => {;
     return [...list.slice(0,index), update,...list.slice(index+1)]}
@@ -60,7 +58,7 @@ const CourseAnnouncement = () => {
       dispatch(updateCourseAnn(course.courseID,newAnnoucement));
     }
   }
-  if (isEnrolled()){
+  if (isenrolled){
   return (loading ? (
     <div>loading...</div>
   ) : !courseAnnouncement ?  (
@@ -75,8 +73,9 @@ const CourseAnnouncement = () => {
         handleEdit={handleEdit(index)}
         index={index} 
         key={index}
-        isLecturer={isLecturer} />
+        isLecturer={islecturer} />
     ))}
+    <img className='refresher2' src={img} alt="refresher" />
     </div>))}
   else
     return (<div className="flex-super-container center-all">

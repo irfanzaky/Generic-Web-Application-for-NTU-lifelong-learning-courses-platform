@@ -4,6 +4,7 @@ import 'react-dropzone-uploader/dist/styles.css';
 import { useDispatch, useSelector } from "react-redux";
 import { uploadAssignment } from "../actions/coursesActions";
 import lock from "../images/lock.png";
+import img from "../images/assignment.png";
 
 const CourseContent = (props) => {
   const [assignment, setAssignment] = useState("");
@@ -16,7 +17,7 @@ const CourseContent = (props) => {
 
   useEffect(() => {
     setEnrolled(userInfo.courses.includes(params.courseID));
-    setLecturer(((userInfo.role || 'student') === "lecturer"));
+    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
     return () => {};
   }, []); 
 
@@ -60,7 +61,7 @@ const CourseContent = (props) => {
               height={800}
               width={'100%'}/></>):''
           }
-    
+      <img className='refresher2' src={img} alt="refresher" />
       </div>
     );
   else

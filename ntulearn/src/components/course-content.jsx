@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { detailsContent } from "../actions/contentActions";
 import { Link } from "react-router-dom";
 import lock from "../images/lock.png";
+import img from '../images/content.png';
 
 const Chapter = ({content}) => {
   return <div>
@@ -28,7 +29,7 @@ const LectureContent = (props) => {
   useEffect(() => {
     dispatch(detailsContent(params.courseID));
     setEnrolled(userInfo.courses.includes(params.courseID));
-    setLecturer(((userInfo.role || 'student') === "lecturer"));
+    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
     return () => {};
   }, []); 
 
@@ -42,6 +43,7 @@ const LectureContent = (props) => {
       <div className="flex-super-container">
         {content.map((chapter, index) => 
           <Chapter content={chapter} key={index} />)}
+          <img className='refresher2' src={img} alt="refresher" />
       </div>))
   else
     return (<div className="flex-super-container center-all">

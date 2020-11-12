@@ -34,7 +34,7 @@ const Homepage = () => {
     <div>
       <div className="header">
         <h1>Welcome to NTU Lifelong Learning Centre</h1>
-        <p>Lorem Ipsum Dolor sit Amet</p>
+        <p></p>
       </div>
 
       <div className="flex-super-container">

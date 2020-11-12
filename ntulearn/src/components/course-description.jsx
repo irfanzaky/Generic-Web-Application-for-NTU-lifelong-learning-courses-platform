@@ -4,6 +4,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
 import { updateCourseDesc } from "../actions/coursesActions";
+import img from '../images/courseDesc.png';
 
 const CourseDescription = () => {
   const courseDetails = useSelector((state) => state.courseDetails);
@@ -19,7 +20,7 @@ const CourseDescription = () => {
   useEffect(() => {
     setCourseDesc(course.courseDescription)
     setEnrolled(userInfo.courses.includes(course.courseID))
-    setLecturer(((userInfo.role || 'student') === "lecturer"))
+    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
     return () => {};
   }, [loading]); 
 
@@ -41,10 +42,13 @@ const CourseDescription = () => {
           editor={ ClassicEditor }
           data={ courseDesc }
           onChange={handleOnChange} />:
-      parse(courseDesc)
+      <div className='grad1'>{parse(courseDesc)}</div>
+      
       }
       {islecturer? 
         <button className="button" onClick={handleButton}>{editable?'save':'edit'}</button>:""}
+
+      <img className='refresher' src={img} alt="refresher" />
     </div>
   );
 };

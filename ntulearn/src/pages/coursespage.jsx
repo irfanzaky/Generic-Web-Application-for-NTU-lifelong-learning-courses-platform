@@ -3,10 +3,11 @@ import CourseCard from "../components/course-card";
 import { useDispatch, useSelector } from "react-redux";
 import { listCourses } from "../actions/coursesActions";
 
-const Coursespage
- = () => {
+const Coursespage = () => {
   const courseList = useSelector((state) => state.courseList);
+  const userSignin = useSelector((state) => state.userSignin);
   const { courses, loading, error } = courseList;
+  const { userInfo } = userSignin;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +28,9 @@ const Coursespage
       <div className="flex-super-container">
         <h3>My Course</h3>
         <div className="flex-container">
-          {courses.map((course) => (
+          {courses
+            .filter((course) => userInfo.courses.includes(course.courseID))
+            .map((course) => (
             <CourseCard course={course} key={course._id} />
           ))}
         </div>
