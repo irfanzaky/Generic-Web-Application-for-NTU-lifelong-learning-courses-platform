@@ -36,8 +36,8 @@ const CourseAnnouncement = () => {
   
   useEffect(() => {
     setCourseAnnouncement(course.announcement);
-    setEnrolled(userInfo.courses.includes(course.courseID));
-    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
+    setEnrolled(userInfo ? userInfo.courses.includes(course.courseID) : false);
+    setLecturer(['lecturer', 'admin'].includes(userInfo? userInfo.role : 'student' ))  ;
     return () => {};
   }, [loading]); 
 

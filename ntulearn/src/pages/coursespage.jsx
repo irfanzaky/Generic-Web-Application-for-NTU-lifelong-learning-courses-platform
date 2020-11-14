@@ -18,7 +18,7 @@ const Coursespage = () => {
   return loading ? (
     <div>loading...</div>
   ) : error ?  (
-    <div>{error}</div>
+    <div>{error}</div> 
   ) : (
     <div>
       <div className="header">

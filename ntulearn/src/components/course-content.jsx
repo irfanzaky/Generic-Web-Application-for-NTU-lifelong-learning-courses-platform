@@ -28,8 +28,8 @@ const LectureContent = (props) => {
 
   useEffect(() => {
     dispatch(detailsContent(params.courseID));
-    setEnrolled(userInfo.courses.includes(params.courseID));
-    setLecturer(['lecturer', 'admin'].includes(userInfo.role || 'student'));
+    setEnrolled(userInfo ? userInfo.courses.includes(params.courseID) : false);
+    setLecturer(['lecturer', 'admin'].includes(userInfo? userInfo.role : 'student' ))  ;
     return () => {};
   }, []); 
 
