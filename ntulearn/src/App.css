@@ -290,6 +290,16 @@ h3 {
 .grad1 {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(100, 178, 209, 0.1) 100%);
   border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.inputform {
+  border: 0px solid;
   padding: 10px;
   margin: 10px;
+  border-radius: 8px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 75%;
 }

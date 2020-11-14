@@ -6,7 +6,6 @@ import {
   COURSE_DETAILS_REQUEST,
   COURSE_DETAILS_SUCCESS,
   COURSE_DETAILS_FAIL,
-  COURSE_DESC_UPDATE,
 } from "../constants/courseConstant";
 
 const listCourses = () => async (dispatch) => {
@@ -44,6 +43,7 @@ const updateCourseAnn = (courseID, courseAnn) => async (dispatch) => {
     console.log("dispatch update", courseID, courseAnn);
     const { data } = await Axios.put("http://localhost:5000/api/courses/ann/" + courseID, {ann: courseAnn});
     console.log(data)
+    dispatch(detailsCourse(courseID));
   } catch (e) {
     console.log(e)
   }

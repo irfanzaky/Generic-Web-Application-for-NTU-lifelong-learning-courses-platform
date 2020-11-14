@@ -8,20 +8,41 @@ import lock from "../images/lock.png";
 import img from '../images/announcement.png';
 
 const Annoucement = ({announcement, handleEdit, handleOnChange,isLecturer}) => {
+  const [announcementTitle, setAnnouncementTitle] = useState(announcement.title);
+  const handleSubmit = () => handleEdit(announcementTitle)
   return (<div className='grad1'>
     {announcement.editable?
-      <CKEditor  
-      editor={ ClassicEditor }
-      data={ announcement.content  }
-      onChange={handleOnChange}
-      />:
+      <div>
+        <Details 
+          announcementTitle={announcementTitle} 
+          setAnnouncementTitle={setAnnouncementTitle}/>
+        <CKEditor  
+          editor={ ClassicEditor }
+          data={ announcement.content  }
+          onChange={handleOnChange}/>
+      </div>
+      :
       <div>
         <h3>{announcement.title}</h3>
         <p>Posted on: {announcement.time}</p>
         {parse(announcement.content)}
       </div> }
-    {isLecturer?<button className="button" onClick={handleEdit}>{announcement.editable?'save':'edit'}</button>:""}
+    {isLecturer?<button className="button" onClick={handleSubmit}>{announcement.editable?'save':'edit'}</button>:""}
   </div>)
+}
+
+const Details = ({announcementTitle, setAnnouncementTitle})=> {
+  return(
+    <form>
+      <label> Announcement Title : </label>
+      <input
+        type="text"
+        className="inputform"
+        placeholder={"Title"}
+        value={announcementTitle}
+        onChange={(e) => setAnnouncementTitle(e.target.value)}
+      ></input>
+    </form>)
 }
 
 const CourseAnnouncement = () => {
@@ -50,8 +71,8 @@ const CourseAnnouncement = () => {
     const newAnnoucement = updateList(courseAnnouncement, i, updatedData);
     setCourseAnnouncement(newAnnoucement);
   }
-  const handleEdit = (i) => () =>{
-    const newData = {...courseAnnouncement[i], editable: !courseAnnouncement[i].editable};
+  const handleEdit = (i) => (title) =>{
+    const newData = {...courseAnnouncement[i], title, editable: !courseAnnouncement[i].editable};
     const newAnnoucement = updateList(courseAnnouncement, i, newData);
     setCourseAnnouncement(newAnnoucement);
     if(courseAnnouncement[i].editable){
@@ -66,6 +87,7 @@ const CourseAnnouncement = () => {
   ) : (
     <div className="flex-super-container">
       <h2>Announcement</h2>
+      
       {courseAnnouncement.map((announcement, index) => (
       <Annoucement 
         announcement={announcement} 
