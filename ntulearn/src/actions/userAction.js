@@ -12,7 +12,7 @@ import {
 const signin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
-    const { data } = await Axios.post("http://localhost:5000/api/users/signin/", { email, password });
+    const { data } = await Axios.post("http://irfanzakyharlen.com:5000/api/users/signin/", { email, password });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (error) {
@@ -23,7 +23,7 @@ const signin = (email, password) => async (dispatch) => {
 const register = (username, email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password } });
-    const { data } = await Axios.post("http://localhost:5000/api/users/register/", { username, email, password });
+    const { data } = await Axios.post("http://irfanzakyharlen.com:5000/api/users/register/", { username, email, password });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (error) {
