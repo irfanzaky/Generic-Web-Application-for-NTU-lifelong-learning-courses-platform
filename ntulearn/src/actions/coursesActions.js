@@ -11,7 +11,7 @@ import {
 const listCourses = () => async (dispatch) => {
   try {
     dispatch({ type: COURSE_LIST_REQUEST });
-    const { data } = await Axios.get("http://18.139.83.167:5000/api/courses");
+    const { data } = await Axios.get("http://irfanzakyharlen.com:5000/api/courses");
     dispatch({ type: COURSE_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: COURSE_LIST_FAIL, payload: error.message });
@@ -21,11 +21,41 @@ const listCourses = () => async (dispatch) => {
 const detailsCourse = (courseID) => async (dispatch) => {
   try {
     dispatch({ type: COURSE_DETAILS_REQUEST, payload: courseID });
-    const { data } = await Axios.get("http://18.139.83.167:5000/api/courses/get/" + courseID);
+    const { data } = await Axios.get("http://irfanzakyharlen.com:5000/api/courses/get/" + courseID);
     dispatch({ type: COURSE_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: COURSE_DETAILS_FAIL, payload: error.message });
   }
 };
 
-export { listCourses, detailsCourse };
+const updateCourseDesc = (courseID, courseDesc) => async (dispatch) => {
+  try {
+    console.log("dispatch update", courseID, courseDesc);
+    const { data } = await Axios.put("http://irfanzakyharlen.com:5000/api/courses/desc/" + courseID, {desc: courseDesc});
+    console.log(data)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const updateCourseAnn = (courseID, courseAnn) => async (dispatch) => {
+  try {
+    console.log("dispatch update", courseID, courseAnn);
+    const { data } = await Axios.put("http://irfanzakyharlen.com:5000/api/courses/ann/" + courseID, {ann: courseAnn});
+    console.log(data)
+    dispatch(detailsCourse(courseID));
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const uploadAssignment = (courseID, assignment) => async (dispatch) => {
+  try {
+    console.log("dispatch update", courseID, assignment);
+    const { data } = await Axios.post("http://irfanzakyharlen.com:5000/api/courses/assignment/" + courseID, assignment);
+    console.log(data)
+  } catch (e) {
+    console.log(e)
+  }
+}
+export { listCourses, detailsCourse, updateCourseDesc, updateCourseAnn, uploadAssignment };

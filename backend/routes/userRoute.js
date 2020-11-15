@@ -9,12 +9,16 @@ router.post("/signin", async (req, res) => {
     email: req.body.email,
     password: req.body.password,
   });
+  console.log("sign in user:",signinUser);
   if (signinUser) {
     res.send({
       username: signinUser.username,
       email: signinUser.email,
       role: signinUser.role,
+      matric: signinUser.matric || 'failedmatric',
+      courses: signinUser.courses || 'failedcourse',
       token: getToken(signinUser.toJSON()),
+
     });
   } else {
     res.status(404).send({ msg: "Invalid email or Password!" });

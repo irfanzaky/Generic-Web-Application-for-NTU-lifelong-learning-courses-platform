@@ -80,6 +80,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   display: block;
+  max-width: 10%;
 }
 
 .Navbar > div {
@@ -218,6 +219,11 @@ p {
   border-radius: 25px;
   margin: 20px;
   padding: 0px;
+  transition: 0.5s;
+}
+.course-card:hover {
+  box-shadow: 10px 10px 10px var(--shadowDark), -15px -15px 20px var(--shadowWhite);
+  transform: translate(0, -15px);
 }
 
 .course-card p,
@@ -262,4 +268,38 @@ h3 {
 .button:hover {
   background-color: #020049;
   color: var(--mainWhite);
+}
+
+.center-all {
+  text-align: center;
+}
+
+.refresher {
+  border-radius: 8px;
+  max-width: 30%;
+  margin-left: auto;
+}
+
+.refresher2 {
+  border-radius: 8px;
+  max-width: 50%;
+  margin-left: auto;
+  margin-top: 30px;
+}
+
+.grad1 {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(100, 178, 209, 0.1) 100%);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.inputform {
+  border: 0px solid;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 75%;
 }

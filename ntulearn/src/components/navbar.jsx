@@ -16,9 +16,11 @@ const Navbar = ({ userInfo }) => {
       </div>
 
       <div>
-        <Link to="/courses" className="NavbarText">
-          Courses
-        </Link>
+
+      <Link to={userInfo? "/courses": "/"} className="NavbarText">
+            Courses
+      </Link>
+     
       </div>
       <div>
         {userInfo ? (

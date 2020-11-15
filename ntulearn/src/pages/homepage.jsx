@@ -8,9 +8,12 @@ import { listCourses } from "../actions/coursesActions";
 
 const Homepage = () => {
   const courseList = useSelector((state) => state.courseList);
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const { courses, loading, error } = courseList;
   const [editable, setEditable] = useState(false);
   const [description, setDescription] = useState('');
+  const [isAdmin, setAdmin] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +22,11 @@ const Homepage = () => {
     return () => {};
   }, []); 
 
-
+  useEffect(() => {
+    setAdmin(['admin'].includes(userInfo ? userInfo.role : 'student'));
+    return () => {};
+  }, [loading]); 
+  
   const handleButton = () => setEditable(!editable);
   const handleOnChange =  ( event, editor ) => {
     const data = editor.getData();
@@ -34,7 +41,7 @@ const Homepage = () => {
     <div>
       <div className="header">
         <h1>Welcome to NTU Lifelong Learning Centre</h1>
-        <p>Lorem Ipsum Dolor sit Amet</p>
+        <p></p>
       </div>
 
       <div className="flex-super-container">
@@ -46,7 +53,8 @@ const Homepage = () => {
           onChange={handleOnChange} />:
       parse(description)
       }
-       <button className="button" onClick={handleButton}>{editable?'save':'edit'}</button>
+      {isAdmin? <button className="button" onClick={handleButton}>{editable?'save':'edit'}</button>:""}
+      
 
       
       <h3>Courses Available</h3>

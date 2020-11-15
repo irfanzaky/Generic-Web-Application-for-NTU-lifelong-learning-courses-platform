@@ -42,3 +42,19 @@ li {
     background-color: red;
   }
 }
+
+.profile-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(2n) {
+  background-color: rgb(230, 230, 230);
+}

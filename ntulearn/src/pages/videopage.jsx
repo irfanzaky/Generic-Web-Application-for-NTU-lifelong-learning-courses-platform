@@ -2,13 +2,14 @@ import React, { useEffect, useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import queryString from 'query-string';
 import { chapterContent } from "../actions/contentActions";
-import ReactPlayer from "react-player";
-import LectureSidebar from "../components/lecture-sidebar";
+import { Player, LoadingSpinner, ControlBar, PlaybackRateMenuButton, ReplayControl, ForwardControl, BigPlayButton } from 'video-react';
 import LectureNavbar from "../components/lecture-navbar";
 import LectureContent from "../components/lecture-content";
 import LectureQnA from "../components/lecture-qna";
 import LectureSummary from "../components/lecture-summary";
 import "./App.css";
+import "./videopage.css"; 
+
 
 const LectureComponent = (props) => {
   const contentDetails = useSelector((state) => state.contentDetails);
@@ -33,14 +34,20 @@ const LectureComponent = (props) => {
     <div>there is error: {error}</div>
   ) : (
     <div className="lecture-container">
-      <div className="player-wrapper">
-        <ReactPlayer
+        <Player
           className="react-player"
-          url={getActiveLecture().video}
-          width="100%"
-          height="100%"
-        />
-      </div>
+          playsInline
+          autoPlay
+          src={getActiveLecture().video}>
+          <LoadingSpinner />
+          <BigPlayButton position="center" />
+          <ControlBar>
+            <ReplayControl seconds={5} order={2.1} />
+            <ForwardControl seconds={5} order={3.1} />
+            <PlaybackRateMenuButton rates={[2.25, 2, 1.5, 1, 0.75]} />
+          </ControlBar>
+        </Player>
+      
       <div>
         <LectureNavbar location={props.location} />
           { menu=="qna"?<LectureQnA  />:

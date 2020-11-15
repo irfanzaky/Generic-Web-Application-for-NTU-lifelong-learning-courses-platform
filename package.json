@@ -7,12 +7,15 @@
     "admin-bro": "^3.2.5",
     "admin-bro-expressjs": "^2.1.1",
     "admin-bro-mongoose": "^0.5.2",
+    "aws-sdk": "^2.787.0",
     "babel-node": "^0.0.1-security",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -27,8 +30,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "prettier": "^2.0.5",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
